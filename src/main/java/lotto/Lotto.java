@@ -1,6 +1,7 @@
 package lotto;
 
 import java.util.List;
+import java.util.stream.IntStream;
 
 public class Lotto {
     private final List<Integer> numbers;
@@ -16,5 +17,13 @@ public class Lotto {
         }
     }
 
-    // TODO: 추가 기능 구현
+    public int matchCount(Lotto other) {
+        return (int) IntStream.range(0, 6)
+                .filter(index -> numbers.get(index).equals(other.numbers.get(index)))
+                .count();
+    }
+
+    public boolean contains(int number) {
+        return numbers.contains(number);
+    }
 }
