@@ -2,6 +2,7 @@ package lotto;
 
 import java.util.Collections;
 import java.util.List;
+import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
 public class Lotto {
@@ -9,7 +10,7 @@ public class Lotto {
 
     public Lotto(List<Integer> numbers) {
         validate(numbers);
-        this.numbers = numbers;
+        this.numbers = sort(numbers);
     }
 
     private void validate(List<Integer> numbers) {
@@ -30,5 +31,11 @@ public class Lotto {
 
     public List<Integer> getNumbers() {
         return Collections.unmodifiableList(numbers);
+    }
+
+    private List<Integer> sort(List<Integer> numbers) {
+        return numbers.stream()
+                .sorted()
+                .collect(Collectors.toList());
     }
 }
