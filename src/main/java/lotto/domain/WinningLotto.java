@@ -11,5 +11,11 @@ public class WinningLotto {
         this.bonusNumber = bonusNumber;
     }
 
+    public int matchCount(Lotto other) {
+        return lotto.matchCount(other);
+    }
 
+    public boolean contains(Lotto other) {
+        return other.contains(bonusNumber);
+    }
 }
