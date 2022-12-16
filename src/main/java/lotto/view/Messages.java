@@ -7,7 +7,8 @@ public enum Messages {
     INPUT_BONUS_NUMBER("보너스 번호를 입력해 주세요."),
     STATISTICS("당첨 통계\n" +
             "---"),
-    WIN_INFO("%d개 일치 (%d)원 - %d개\n");
+    WIN_INFO("%d개 일치 (%d)원 - %d개\n"),
+    PROFIT_RATE("총 수익률은 %.1f%%입니다.");
 
     private final String message;
 

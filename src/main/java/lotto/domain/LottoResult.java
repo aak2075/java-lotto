@@ -25,4 +25,16 @@ public class LottoResult {
     public Map<Rank, Integer> getResult() {
         return Collections.unmodifiableMap(result);
     }
+
+    public double calProfitRate(int amount) {
+        return calProfit() / (double) amount * 100;
+    }
+
+    private int calProfit() {
+        return result.entrySet().stream()
+                .filter(entry -> entry.getValue() > 0)
+                .map(Map.Entry::getKey)
+                .mapToInt(Rank::getWinningMoney)
+                .sum();
+    }
 }
