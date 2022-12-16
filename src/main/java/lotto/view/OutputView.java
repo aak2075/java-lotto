@@ -37,7 +37,7 @@ public class OutputView {
                 .filter(rank -> rank != Rank.MISS)
                 .sorted(Comparator.reverseOrder())
                 .forEach(rank -> System.out.printf(
-                        Messages.WIN_INFO.getMessage(),
+                        Messages.getWinningInfo(rank),
                         rank.getCountOfMatch(),
                         format.format(rank.getWinningMoney()),
                         result.get(rank))
