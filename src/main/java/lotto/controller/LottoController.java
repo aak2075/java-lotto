@@ -15,9 +15,10 @@ public class LottoController {
     LottoMachine machine;
     public void run() {
         init();
-        List<Lotto> lottos = buy();
+        int amount = amount();
+        List<Lotto> lottos = buy(amount);
         WinningLotto winningLotto = setWinning();
-        result(lottos, winningLotto);
+        result(lottos, winningLotto, amount);
     }
 
     private void init() {
@@ -25,9 +26,13 @@ public class LottoController {
         machine = new LottoMachine(generator);
     }
 
-    public List<Lotto> buy() {
+    private int amount() {
         OutputView.inputAmount();
-        List<Lotto> lottos = machine.buy(InputView.readAmount());
+        return InputView.readAmount();
+    }
+
+    public List<Lotto> buy(int amount) {
+        List<Lotto> lottos = machine.buy(amount);
         OutputView.numberOfLotto(lottos.size());
         OutputView.lottoNumbers(lottos);
 
@@ -41,11 +46,12 @@ public class LottoController {
         return new WinningLotto(lotto, InputView.readBonusNumber());
     }
 
-    public void result(List<Lotto> lottos, WinningLotto winningLotto) {
+    public void result(List<Lotto> lottos, WinningLotto winningLotto, int amount) {
         LottoResult result = new LottoResult();
         for (Lotto lotto : lottos) {
             result.addResult(lotto, winningLotto);
         }
         OutputView.statistics(result.getResult());
+        OutputView.profitRate(result.calProfitRate(amount));
     }
 }
