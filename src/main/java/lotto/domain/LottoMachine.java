@@ -25,6 +25,6 @@ public class LottoMachine {
     }
 
     private int numberOfLotto(int amount) {
-        return amount % LOTTO_PRICE;
+        return amount / LOTTO_PRICE;
     }
 }
