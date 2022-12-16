@@ -2,6 +2,7 @@ package lotto.domain;
 
 import lotto.Lotto;
 import lotto.util.NumberGenerator;
+import lotto.view.ErrorMessages;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -15,6 +16,7 @@ public class LottoMachine {
     }
 
     public List<Lotto> buy(int amount) {
+        validate(amount);
         List<Lotto> lottos = new ArrayList<>();
         int count = numberOfLotto(amount);
         for (int i = 0; i < count; i++) {
@@ -26,5 +28,11 @@ public class LottoMachine {
 
     private int numberOfLotto(int amount) {
         return amount / LOTTO_PRICE;
+    }
+
+    private void validate(int amount) {
+        if (amount % LOTTO_PRICE != 0) {
+            throw new IllegalArgumentException(ErrorMessages.INPUT_AMOUNT_ERROR.getMessage());
+        }
     }
 }
