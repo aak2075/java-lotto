@@ -3,6 +3,7 @@ package lotto.view;
 import lotto.Lotto;
 import lotto.domain.Rank;
 
+import java.text.DecimalFormat;
 import java.util.Arrays;
 import java.util.Comparator;
 import java.util.List;
@@ -31,13 +32,14 @@ public class OutputView {
 
     public static void statistics(Map<Rank, Integer> result) {
         System.out.println(Messages.STATISTICS.getMessage());
+        DecimalFormat format = new DecimalFormat("###,###");
         Arrays.stream(Rank.values())
                 .filter(rank -> rank != Rank.MISS)
                 .sorted(Comparator.reverseOrder())
                 .forEach(rank -> System.out.printf(
                         Messages.WIN_INFO.getMessage(),
                         rank.getCountOfMatch(),
-                        rank.getWinningMoney(),
+                        format.format(rank.getWinningMoney()),
                         result.get(rank))
                 );
     }
