@@ -15,10 +15,14 @@ public class LottoController {
     LottoMachine machine;
     public void run() {
         init();
-        int amount = amount();
-        List<Lotto> lottos = buy(amount);
-        WinningLotto winningLotto = setWinning();
-        result(lottos, winningLotto, amount);
+        try {
+            int amount = amount();
+            List<Lotto> lottos = buy(amount);
+            WinningLotto winningLotto = setWinning();
+            result(lottos, winningLotto, amount);
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+        }
     }
 
     private void init() {
