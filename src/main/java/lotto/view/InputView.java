@@ -31,7 +31,7 @@ public class InputView {
         try {
             return Integer.parseInt(Console.readLine());
         } catch (NumberFormatException e) {
-            throw new IllegalArgumentException(ErrorMessages.INPUT_BONUS_NUMBER_ERROR.getMessage());
+            throw new IllegalArgumentException(ErrorMessages.INPUT_BONUS_TYPE_ERROR.getMessage());
         }
     }
 }
